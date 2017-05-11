@@ -3,7 +3,14 @@ class BookFinder::Scraper
     doc = Nokogiri::HTML(open("http://www.goodreads.com/list/show/2681.Time_Magazine_s_All_Time_100_Novels"))
 
     book_list = doc.css(".tableList tr")
-    binding.pry
+
+    book_list.collect do |book|
+      {
+        title: book.css(".bookTitle span[itemprop=name]").text,
+        author: book.css(".authorName span[itemprop=name]").text
+      }
+    end
+    # binding.pry
   end
 end
 
