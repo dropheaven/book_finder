@@ -11,6 +11,11 @@ class BookFinder::Scraper
       }
     end
   end
+
+  def self.book_description(book_link)
+    doc = Nokogiri::HTML(open(book_link))
+    description = doc.css("#description").css("span").text
+  end
 end
 
 # [
