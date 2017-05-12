@@ -8,11 +8,11 @@ class BookFinder::CLI
   end
 
   def greeting
-    puts "    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    puts "    +    Welcome To The Top 100 Novels of All Time          +"
-    puts "    +    To List Times Magazine's Top 100 Novels => Enter 1 +"
-    puts "    +    To Exit Application => Enter 2                     +"
-    puts "    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    puts "    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++".blue
+    puts "    +    Welcome To The Top 100 Novels of All Time          +".yellow
+    puts "    +    To List Times Magazine's Top 100 Novels => Enter 1 +".green
+    puts "    +    To Exit Application => Enter 2                     +".red
+    puts "    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++".blue
   end
 
   def main_menu_input
@@ -26,21 +26,22 @@ class BookFinder::CLI
       BookFinder::Book.list_books
 
       puts ""
-      puts "    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-      puts "    +   Choose a Book Number To Receive a Description       +"
-      puts "    +   Or Type Any Letter To Return To The Main Menu       +"
-      puts "    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+      puts "    +++++++++++++++++++++++++++++++++++++++++++++++++++++++".yellow
+      puts "    +   Choose a Book Number To Receive a Description     +".red
+      puts "    +   Or Type Any Letter To Return To The Main Menu     +".green
+      puts "    +++++++++++++++++++++++++++++++++++++++++++++++++++++++".blue
       description_menu
 
     when "2"
-
+      puts ""
+      puts "Goodbye!".bold.red
     else
       puts ""
-      puts "    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-      puts "    +               Invalid Entry                           +"
-      puts "    +  To List Times Magazine's Top 100 Novels => Enter 1   +"
-      puts "    +         To Exit Application => Enter 2                +"
-      puts "    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+      puts "   +++++++++++++++++++++++++++++++++++++++++++++++++++++++++".blue
+      puts "   +               Invalid Entry                           +".green
+      puts "   + To List Times Magazine's Top 100 Novels => Enter 1    +".yellow
+      puts "   +         To Exit Application => Enter 2                +".red
+      puts "   +++++++++++++++++++++++++++++++++++++++++++++++++++++++++".blue
       main_menu_input
     end
   end
@@ -51,12 +52,12 @@ class BookFinder::CLI
     if input.between?(1, 100)
       book = BookFinder::Book.all[input - 1]
       puts ""
-      puts "+++ A brief description of '#{book.title}' by #{book.author} +++"
+      puts "+++ A brief description of '#{book.title}' by #{book.author} +++".yellow
       puts ""
       puts BookFinder::Scraper.book_description(book.book_link)
       puts ""
-      puts "For more information on this book, please visit:"
-      puts "#{book.book_link}"
+      puts "For more information on this book, please visit:".blue
+      puts "#{book.book_link}".green
       puts ""
       greeting
       main_menu_input

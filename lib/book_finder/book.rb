@@ -25,6 +25,6 @@ class BookFinder::Book
 
   def self.random_book
     book = all.sample
-    puts "#{book.title} by #{book.author}"  
+    puts "#{book.title} by #{book.author}"
   end
 end
