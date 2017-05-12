@@ -11,8 +11,7 @@ class BookFinder::CLI
     puts "    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
     puts "    +    Welcome To The Top 100 Novels of All Time          +"
     puts "    +    To List Times Magazine's Top 100 Novels => Enter 1 +"
-    puts "    +    To Randomly Generate a Book => Enter 2             +"
-    puts "    +    To Exit Application => Enter 3                     +"
+    puts "    +    To Exit Application => Enter 2                     +"
     puts "    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
   end
 
@@ -26,6 +25,7 @@ class BookFinder::CLI
       BookFinder::Book.create_from_collection(novels)
       BookFinder::Book.list_books
 
+      puts ""
       puts "    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
       puts "    +   Choose a Book Number To Receive a Description       +"
       puts "    +   Or Type Any Letter To Return To The Main Menu       +"
@@ -33,25 +33,13 @@ class BookFinder::CLI
       description_menu
 
     when "2"
-      novels = BookFinder::Scraper.top_100_novels
-      BookFinder::Book.create_from_collection(novels)
-      BookFinder::Book.random_book
-      puts ""
-      puts "    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-      puts "    +         Type 'more' For a Description                 +"
-      puts "    +  Or Type 'back' To Return to the Main Menu            +"
-      puts "    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-      description_menu
-
-    when "3"
 
     else
       puts ""
       puts "    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
       puts "    +               Invalid Entry                           +"
-      puts "    +         Enter 1 For Complete Book List                +"
-      puts "    +         Enter 2 For a Random Selection                +"
-      puts "    +         Enter 3 to Exit Application                   +"
+      puts "    +  To List Times Magazine's Top 100 Novels => Enter 1   +"
+      puts "    +         To Exit Application => Enter 2                +"
       puts "    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
       main_menu_input
     end
@@ -67,6 +55,9 @@ class BookFinder::CLI
       puts ""
       puts BookFinder::Scraper.book_description(book.book_link)
       puts ""
+      puts "For more information on this book, please visit:"
+      puts "#{book.book_link}"
+      puts ""
       greeting
       main_menu_input
     else
@@ -74,5 +65,4 @@ class BookFinder::CLI
       main_menu_input
     end
   end
-
 end
