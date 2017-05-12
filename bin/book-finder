@@ -2,4 +2,4 @@
 
 require './lib/book_finder'
 
-BookFinder::Scraper.top_100_novels
+BookFinder::CLI.new.call
