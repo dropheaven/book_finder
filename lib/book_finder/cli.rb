@@ -63,8 +63,12 @@ class BookFinder::CLI
     if input.between?(1, 100)
       book = BookFinder::Book.all[input - 1]
       puts ""
-      puts "A brief description of #{book.title} by #{book.author}"
+      puts "+++ A brief description of '#{book.title}' by #{book.author} +++"
+      puts ""
       puts BookFinder::Scraper.book_description(book.book_link)
+      puts ""
+      greeting
+      main_menu_input
     else
       greeting
       main_menu_input
