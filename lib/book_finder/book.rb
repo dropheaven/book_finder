@@ -20,10 +20,6 @@ class BookFinder::Book
   def self.list_books
     all.each_with_index do |book, index|
       puts "#{index + 1}. #{book.title} by #{book.author}"
-
-      if index > 98
-        break
-      end
     end
   end
 
