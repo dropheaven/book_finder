@@ -4,6 +4,7 @@ class BookFinder::CLI
 
   def call
     greeting
+    create_books
     main_menu
   end
 
@@ -15,7 +16,10 @@ class BookFinder::CLI
     puts "    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++".blue
   end
 
-
+  def create_books
+    novels_array = BookFinder::Scraper.top_100_novels
+    BookFinder::Book.create_from_collection(novels_array)
+  end
 
   def main_menu
     input = gets.strip
@@ -23,8 +27,6 @@ class BookFinder::CLI
     case input
     when "1"
       puts ""
-      novels_array = BookFinder::Scraper.top_100_novels
-      BookFinder::Book.create_from_collection(novels_array)
       BookFinder::Book.list_books
       all_books = BookFinder::Book.all
 
